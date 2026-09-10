@@ -1,68 +1,45 @@
 # SIEM Threat Detection & Incident Response Lab
 
-## Overview
+A hands-on cybersecurity lab implementing a cloud-based SIEM environment with Wazuh on AWS EC2.
 
-This project demonstrates how to build a free Security Information and Event Management (SIEM) platform using Wazuh on AWS.
+The project demonstrates endpoint monitoring, File Integrity Monitoring (FIM), SSH authentication detection, alert investigation, and MITRE ATT&CK mapping.
 
-The objective is to collect security logs, detect malicious activity, investigate alerts, identify Indicators of Compromise (IOCs), and document the incident response process.
-
----
-
-## Objectives
-
-- Deploy Wazuh SIEM on AWS EC2
-- Collect endpoint security logs
-- Generate security alerts
-- Investigate suspicious activity
-- Analyze Indicators of Compromise (IOCs)
-- Create Sigma detection rules
-- Document incident response procedures
-- Produce professional security documentation
-
----
-
-## Technologies Used
+## 🛠️ Technologies
 
 - AWS EC2
+- Wazuh 4.13.1
 - Ubuntu Linux
-- Wazuh
-- Linux
+- Wazuh Agent
+- Wazuh Manager
 - SSH
-- Sigma Rules
+- File Integrity Monitoring
 - MITRE ATT&CK
-- JSON Logs
-- Cyber Threat Intelligence
-
----
-
-## Project Structure
-
-```
-architecture/
-detections/
-incident-reports/
-iocs/
-logs/
-screenshots/
-sigma-rules/
-```
-
----
-
-## Skills Demonstrated
-
 - SIEM
-- Threat Detection
-- Incident Response
-- Log Analysis
-- Security Monitoring
-- Linux Administration
-- Cloud Security
-- Threat Hunting
-- SOC Analyst Skills
+- GitHub
 
----
+## 🏗️ Architecture
 
-## Author
-
-**Redoy Sarker**
+```text
+                 AWS Cloud
+                     |
+             +-------v-------+
+             | Wazuh Manager |
+             |   EC2 Server  |
+             +-------+-------+
+                     |
+               TCP 1514/1515
+                     |
+             +-------v-------+
+             | Ubuntu Agent  |
+             |    EC2        |
+             +---------------+
+                     |
+             Security Events
+                     |
+             +-------v-------+
+             | Wazuh Alerts  |
+             +-------+-------+
+                     |
+             Investigation
+                     |
+             MITRE ATT&CK
